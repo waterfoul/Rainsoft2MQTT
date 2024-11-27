@@ -20,28 +20,28 @@ const config = await (async () => {
     if (process.env.SUPERVISOR_TOKEN) {
         const supervisorApi = process.env.SUPERVISOR_API ?? "http://supervisor"
 
-        const addonConfig = JSON.parse(await axios.get(`${supervisorApi}/addons/self/options/config`, {
+        const addonConfig = await axios.get(`${supervisorApi}/addons/self/options/config`, {
             headers: {
                 Authorization: `Bearer ${process.env.SUPERVISOR_TOKEN}`
             }
-        }));
+        });
 
-        config.username = addonConfig.username ?? "";
-        config.password = addonConfig.password ?? "";
-        config.mqttUri = addonConfig.mqttUri ?? "";
-        config.mqttUsername = addonConfig.mqttUsername ?? "";
-        config.mqttPassword = addonConfig.mqttPassword ?? "";
-        config.refreshRate = addonConfig.refreshRate ?? "";
+        config.username = addonConfig.data.username ?? "";
+        config.password = addonConfig.data.password ?? "";
+        config.mqttUri = addonConfig.data.mqttUri ?? "";
+        config.mqttUsername = addonConfig.data.mqttUsername ?? "";
+        config.mqttPassword = addonConfig.data.mqttPassword ?? "";
+        config.refreshRate = addonConfig.data.refreshRate ?? "";
 
         if (!config.mqttUri || !config.mqttUsername || !config.mqttPassword) {
-            const mqtt = JSON.parse(await axios.get(`${supervisorApi}/services/mqtt`, {
+            const mqttResult = await axios.get(`${supervisorApi}/services/mqtt`, {
                 headers: {
                     Authorization: `Bearer ${process.env.SUPERVISOR_TOKEN}`
                 }
-            }));
-            config.mqttUri = config.mqttUri || `mqtt${mqtt.ssl ? "s" : ""}://${mqtt.host}:${mqtt.port}`
-            config.mqttUsername = config.mqttUsername || mqtt.username;
-            config.mqttPassword = config.mqttPassword || mqtt.password;
+            });
+            config.mqttUri = config.mqttUri || `mqtt${mqttResult.data.ssl ? "s" : ""}://${mqttResult.data.host}:${mqttResult.data.port}`
+            config.mqttUsername = config.mqttUsername || mqttResult.data.username;
+            config.mqttPassword = config.mqttPassword || mqttResult.data.password;
         }
     }
     return config;
