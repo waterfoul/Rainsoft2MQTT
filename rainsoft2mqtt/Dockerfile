@@ -7,5 +7,5 @@ ARG BUILD_VERSION
 RUN apk add --no-cache nodejs-current && corepack enable
 COPY app/ app/
 WORKDIR app
-RUN yarn install --immutable --immutable-cache
+RUN yarn install
 ENTRYPOINT [ "yarn", "node", "index.js" ]
