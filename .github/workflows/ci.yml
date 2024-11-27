@@ -46,7 +46,6 @@ jobs:
         run: echo ${{ secrets.DOCKER_KEY }} | docker login -u koenkk --password-stdin
       - name: Build
         run: |
-          cp common/build.yaml ${{ matrix.addon }}
           docker run --rm --privileged \
               -v /home/runner/.docker:/root/.docker \
               -v /run/docker.sock:/run/docker.sock:rw \
