@@ -1,6 +1,8 @@
 name: CI
 
 on:
+  release:
+    types: [released]
   push:
     paths-ignore:
       - 'rainsoft2mqtt/config.json'
@@ -22,7 +24,7 @@ jobs:
           echo "ADDON_LIST=['rainsoft2mqtt']" >> $GITHUB_ENV
           echo "DOCKER_ARGS=--no-latest --test" >> $GITHUB_ENV
       - name: "ARGS: rainsoft2mqtt" # Build of addon release version
-        if: startsWith(github.ref, 'refs/tags/') && github.event_name == 'push'
+        if: (startsWith(github.ref, 'refs/tags/') && github.event_name == 'push') || github.event_name == 'release'
         run: |
           echo "ADDON_LIST=['rainsoft2mqtt']" >> $GITHUB_ENV
           echo "DOCKER_ARGS=--no-cache" >> $GITHUB_ENV
