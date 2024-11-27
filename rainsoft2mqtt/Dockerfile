@@ -8,4 +8,4 @@ RUN apk add --no-cache nodejs-current && corepack enable
 COPY app/package.json app/yarn.lock app/
 WORKDIR app
 RUN yarn install --immutable --immutable-cache
-ENTRYPOINT [ "node", "index.js" ]
+ENTRYPOINT [ "yarn", "node", "index.js" ]
