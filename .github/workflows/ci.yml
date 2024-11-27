@@ -44,6 +44,11 @@ jobs:
       matrix:
         arch: ${{fromJSON(needs.variables.outputs.ARCH_LIST)}}
         addon: ${{fromJSON(needs.variables.outputs.ADDON_LIST)}}
+    permissions:
+      contents: read
+      packages: write
+      attestations: write
+      id-token: write
     steps:
       - uses: actions/checkout@v3
       - name: Log in to the Container registry
