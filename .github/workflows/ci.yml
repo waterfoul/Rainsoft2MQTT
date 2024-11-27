@@ -41,9 +41,6 @@ jobs:
         addon: ${{fromJSON(needs.variables.outputs.ADDON_LIST)}}
     steps:
       - uses: actions/checkout@v3
-      - name: Docker login
-        if: (github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags/')) && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
-        run: echo ${{ secrets.DOCKER_KEY }} | docker login -u koenkk --password-stdin
       - name: Build
         run: |
           docker run --rm --privileged \

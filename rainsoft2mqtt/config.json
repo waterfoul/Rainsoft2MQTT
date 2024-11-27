@@ -41,5 +41,5 @@
     "mqttPassword": "password",
     "refreshRate": "int"
   },
-  "image": "rainsoft2mqtt/rainsoft2mqtt-{arch}"
+  "image": "ghcr.io/waterfoul/rainsoft2mqtt-{arch}"
 }
