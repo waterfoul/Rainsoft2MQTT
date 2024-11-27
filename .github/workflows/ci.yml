@@ -54,9 +54,8 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build
-        run: |
-          docker run --rm --privileged \
-              -v /home/runner/.docker:/root/.docker \
-              -v /run/docker.sock:/run/docker.sock:rw \
-              -v $(pwd)/${{ matrix.addon }}:/data homeassistant/amd64-builder --${{ matrix.arch }} -t /data \
-              ${{ env.DOCKER_ARGS }}
+        uses: home-assistant/builder@master
+        with:
+          args: |
+            --${{ matrix.arch }} \
+            ${{ env.DOCKER_ARGS }}
