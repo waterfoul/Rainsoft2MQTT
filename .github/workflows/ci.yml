@@ -2,6 +2,9 @@ name: CI
 
 on:
   push:
+    paths-ignore:
+      - 'rainsoft2mqtt/config.json'
+      - 'rainsoft2mqtt/app/package.json'
   pull_request:
 
 jobs:
