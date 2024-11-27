@@ -28,6 +28,13 @@ jobs:
         run: |
           echo "ADDON_LIST=['rainsoft2mqtt']" >> $GITHUB_ENV
           echo "DOCKER_ARGS=--no-cache" >> $GITHUB_ENV
+      - name: Log in to the Container registry
+        if: (startsWith(github.ref, 'refs/tags/') && github.event_name == 'push') || github.event_name == 'release'
+        uses: docker/login-action
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Determine arch
         id: determine_arch
         run: |
