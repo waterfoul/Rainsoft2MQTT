@@ -24,7 +24,7 @@
       "@semantic-release/release-notes-generator",
       "@semantic-release/npm",
       ["@semantic-release/exec", {
-        "prepareCmd": "jq \".version=\\\"${nextRelease.version}\\\"\" ../config.json | sponge ../config.json"
+        "prepareCmd": "jq \".version=\\\"${nextRelease.version}\\\"\" ../config.json > ../config.json.new && mv ../config.json.new ../config.json"
       }],
       ["@semantic-release/git", {
         "assets": ["package.json","../config.json"],
