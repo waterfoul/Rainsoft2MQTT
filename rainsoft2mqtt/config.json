@@ -41,5 +41,5 @@
     "mqttPassword": "password",
     "refreshRate": "int"
   },
-  "image": "zigbee2mqtt/zigbee2mqtt-{arch}"
+  "image": "rainsoft2mqtt/rainsoft2mqtt-{arch}"
 }
