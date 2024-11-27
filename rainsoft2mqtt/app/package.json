@@ -23,6 +23,9 @@
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
       "@semantic-release/npm",
+      ["@semantic-release/exec", {
+        "prepareCmd": "jq \".version=\\\"${nextRelease.version}\\\"\" ../config.json | sponge ../config.json"
+      }],
       ["@semantic-release/git", {
         "assets": ["package.json","../config.json"],
         "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
