@@ -22,7 +22,7 @@ jobs:
       - name: "ARGS: default"
         run: |
           echo "ADDON_LIST=['rainsoft2mqtt']" >> $GITHUB_ENV
-          echo "DOCKER_ARGS=--no-latest --test" >> $GITHUB_ENV
+          echo "DOCKER_ARGS=--no-latest --test --target rainsoft2mqtt" >> $GITHUB_ENV
       - name: "ARGS: rainsoft2mqtt" # Build of addon release version
         if: (startsWith(github.ref, 'refs/tags/') && github.event_name == 'push') || github.event_name == 'release'
         run: |
