@@ -1,6 +1,6 @@
 {
   "name": "rainsoft2mqtt",
-  "version": "0.0.1LOCAL",
+  "version": "1.0.8",
   "packageManager": "yarn@4.5.3",
   "main": "index.js",
   "type": "module",
@@ -23,13 +23,22 @@
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
       "@semantic-release/npm",
-      ["@semantic-release/exec", {
-        "prepareCmd": "jq \".version=\\\"${nextRelease.version}\\\"\" ../config.json > ../config.json.new && mv ../config.json.new ../config.json"
-      }],
-      ["@semantic-release/git", {
-        "assets": ["package.json","../config.json"],
-        "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-      }],
+      [
+        "@semantic-release/exec",
+        {
+          "prepareCmd": "jq \".version=\\\"${nextRelease.version}\\\"\" ../config.json > ../config.json.new && mv ../config.json.new ../config.json"
+        }
+      ],
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "package.json",
+            "../config.json"
+          ],
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ],
       "@semantic-release/github"
     ]
   },
