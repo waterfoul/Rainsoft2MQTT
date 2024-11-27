@@ -28,4 +28,4 @@ jobs:
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
-        run: cd rainsoft2mqtt/app && npx --package=semantic-release --package=@semantic-release/git semantic-release
+        run: cd rainsoft2mqtt/app && npx --package=semantic-release --package=@semantic-release/git --package=@semantic-release/exec semantic-release
