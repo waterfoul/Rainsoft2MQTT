@@ -3,8 +3,6 @@ name: CI
 on:
   push:
   pull_request:
-  release:
-    types: [released]
 
 jobs:
   variables:
@@ -15,14 +13,7 @@ jobs:
       DOCKER_ARGS: ${{ env.DOCKER_ARGS }}
     steps:
       - uses: actions/checkout@v3
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "lts/*"
+
       - name: "ARGS: default"
         run: |
           echo "ADDON_LIST=['rainsoft2mqtt']" >> $GITHUB_ENV
@@ -50,8 +41,12 @@ jobs:
         addon: ${{fromJSON(needs.variables.outputs.ADDON_LIST)}}
     steps:
       - uses: actions/checkout@v3
+      - name: Docker login
+        if: (github.ref == 'refs/heads/master' || startsWith(github.ref, 'refs/tags/')) && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
+        run: echo ${{ secrets.DOCKER_KEY }} | docker login -u koenkk --password-stdin
       - name: Build
         run: |
+          cp common/build.yaml ${{ matrix.addon }}
           docker run --rm --privileged \
               -v /home/runner/.docker:/root/.docker \
               -v /run/docker.sock:/run/docker.sock:rw \
