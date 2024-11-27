@@ -1,0 +1,5 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="index.js" type="NodeJSConfigurationType" nameIsGenerated="true" node-parameters="node_modules\nodemon\bin\nodemon.js" path-to-js-file="index.js" working-dir="$PROJECT_DIR$/rainsoft2mqtt/app">
+    <method v="2" />
+  </configuration>
+</component>

@@ -1,0 +1,45 @@
+{
+  "name": "Rainsoft2MQTT",
+  "version": "0.0.1",
+  "slug": "rainsoft2mqtt",
+  "description": "Connects to Rainsoft Remind to add data to MQTT",
+  "arch": [
+    "aarch64",
+    "amd64",
+    "armhf",
+    "armv7",
+    "i386"
+  ],
+  "uart": false,
+  "udev": false,
+  "url": "https://github.com/waterfoul/Rainsoft2MQTT/tree/master/rainsoft2mqtt",
+  "startup": "application",
+  "services": [
+    "mqtt:need"
+  ],
+  "boot": "auto",
+  "init": false,
+  "ingress": false,
+  "timeout": 30,
+  "panel_icon": "mdi:water",
+  "map": [],
+  "ports": {},
+  "ports_description": {},
+  "options": {
+    "username": null,
+    "password": null,
+    "mqttUri": "",
+    "mqttUsername": "",
+    "mqttPassword": "",
+    "refreshRate": 5
+  },
+  "schema": {
+    "username": "str",
+    "password": "password",
+    "mqttUri": "str",
+    "mqttUsername": "str",
+    "mqttPassword": "password",
+    "refreshRate": "int"
+  },
+  "image": "zigbee2mqtt/zigbee2mqtt-{arch}"
+}
