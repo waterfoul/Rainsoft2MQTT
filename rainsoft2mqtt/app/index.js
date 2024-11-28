@@ -24,7 +24,6 @@ const config = await (async () => {
                 Authorization: `Bearer ${process.env.SUPERVISOR_TOKEN}`
             }
         });
-        console.log(addonConfig.data)
 
         config.username = addonConfig.data.data.username ?? "";
         config.password = addonConfig.data.data.password ?? "";
