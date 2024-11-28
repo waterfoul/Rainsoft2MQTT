@@ -47,6 +47,10 @@ const config = await (async () => {
     return config;
 })();
 
+if(!config.username || !config.password || !config.refreshRate) {
+  throw new Error("You must set username, password, and refreshRate");
+}
+
 const client = mqtt.connect(config.mqttUri, {
     clientId: "mqtt_rainsoft2mqtt",
     clean: true,
