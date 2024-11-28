@@ -24,13 +24,14 @@ const config = await (async () => {
                 Authorization: `Bearer ${process.env.SUPERVISOR_TOKEN}`
             }
         });
+        console.log(addonConfig.data)
 
-        config.username = addonConfig.data.username ?? "";
-        config.password = addonConfig.data.password ?? "";
-        config.mqttUri = addonConfig.data.mqttUri ?? "";
-        config.mqttUsername = addonConfig.data.mqttUsername ?? "";
-        config.mqttPassword = addonConfig.data.mqttPassword ?? "";
-        config.refreshRate = addonConfig.data.refreshRate ?? "";
+        config.username = addonConfig.data.data.username ?? "";
+        config.password = addonConfig.data.data.password ?? "";
+        config.mqttUri = addonConfig.data.data.mqttUri ?? "";
+        config.mqttUsername = addonConfig.data.data.mqttUsername ?? "";
+        config.mqttPassword = addonConfig.data.data.mqttPassword ?? "";
+        config.refreshRate = addonConfig.data.data.refreshRate ?? "";
 
         if (!config.mqttUri || !config.mqttUsername || !config.mqttPassword) {
             const mqttResult = await axios.get(`${supervisorApi}/services/mqtt`, {
