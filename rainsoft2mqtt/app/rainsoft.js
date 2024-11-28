@@ -60,7 +60,7 @@ export class Rainsoft {
                 headers
             })
         } catch (e) {
-            if(e.response.data) {
+            if(e.response && e.response.data) {
                 if(e.response.data.errors === "Customer Not Found") {
                     console.log("Token no longer valid, refreshing all data");
                     this.#cache.clear();
