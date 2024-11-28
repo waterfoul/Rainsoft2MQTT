@@ -34,9 +34,9 @@
   "schema": {
     "username": "str",
     "password": "password",
-    "mqttUri": "str",
-    "mqttUsername": "str",
-    "mqttPassword": "password",
+    "mqttUri": "str?",
+    "mqttUsername": "str?",
+    "mqttPassword": "password?",
     "refreshRate": "int"
   },
   "image": "ghcr.io/waterfoul/rainsoft2mqtt-{arch}"
