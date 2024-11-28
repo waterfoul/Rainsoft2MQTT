@@ -1,6 +1,6 @@
 {
   "name": "Rainsoft2MQTT",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "slug": "rainsoft2mqtt",
   "description": "Connects to Rainsoft Remind to add data to MQTT",
   "arch": [
