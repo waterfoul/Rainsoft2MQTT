@@ -39,6 +39,7 @@ const config = await (async () => {
                     Authorization: `Bearer ${process.env.SUPERVISOR_TOKEN}`
                 }
             });
+            console.log(mqttResult.data);
             config.mqttUri = config.mqttUri || `mqtt${mqttResult.data.ssl ? "s" : ""}://${mqttResult.data.host}:${mqttResult.data.port}`
             config.mqttUsername = config.mqttUsername || mqttResult.data.username;
             config.mqttPassword = config.mqttPassword || mqttResult.data.password;
